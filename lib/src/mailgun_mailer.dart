@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:mail/mail.dart';
 import 'package:http/http.dart' as http;
+import 'package:mail/mail.dart';
 
 class MailgunMailer implements Mailer {
   final String domain;
@@ -72,7 +72,7 @@ class MailgunMailer implements Mailer {
         return SendResponse(status: SendResponseStatus.FAIL, message: message);
       }
 
-      return SendResponse(status: SendResponseStatus.SUCCESS, message: message);
+      return SendResponse(status: SendResponseStatus.OK, message: message);
     } catch (e) {
       return SendResponse(
           status: SendResponseStatus.FAIL, message: e.toString());

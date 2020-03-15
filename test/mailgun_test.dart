@@ -12,13 +12,12 @@ void main() {
         to: ['mailgun-6789@yopmail.com'],
         subject: 'Hello World',
         text: 'This is a text message');
-    expect(response.status, SendResponseStatus.SUCCESS);
+    expect(response.status, SendResponseStatus.OK);
   });
 
   test('send email fail', () async {
     final mailer = MailgunMailer(
-        domain: 'sandbox33315.mailgun.org',
-        apiKey: 'key-invalid');
+        domain: 'sandbox33315.mailgun.org', apiKey: 'key-invalid');
     var response = await mailer.send(
         from: 'me@dotronglong.com',
         to: ['mailgun-6789@yopmail.com'],

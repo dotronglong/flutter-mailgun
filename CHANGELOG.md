@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Upgrade `mail: 0.0.4`
+
 ## 0.0.2
 
 * Upgrade `mail: 0.0.3`
