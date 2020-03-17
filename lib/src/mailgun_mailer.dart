@@ -7,9 +7,8 @@ import 'package:mail/mail.dart';
 class MailgunMailer implements Mailer {
   final String domain;
   final String apiKey;
-  final String from;
 
-  MailgunMailer({this.domain, this.apiKey, this.from});
+  MailgunMailer({this.domain, this.apiKey});
 
   @override
   Future<SendResponse> send(

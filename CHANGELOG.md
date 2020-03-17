@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Remove unnecessary property
+
 ## 0.0.4
 
 * Upgrade `mail: 0.0.4`
