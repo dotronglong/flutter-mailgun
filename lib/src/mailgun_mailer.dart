@@ -71,7 +71,7 @@ class MailgunMailer implements Mailer {
         return SendResponse(status: SendResponseStatus.FAIL, message: message);
       }
 
-      return SendResponse(status: SendResponseStatus.OK, message: message);
+      return SendResponse(status: SendResponseStatus.QUEUED, message: message);
     } catch (e) {
       return SendResponse(
           status: SendResponseStatus.FAIL, message: e.toString());
