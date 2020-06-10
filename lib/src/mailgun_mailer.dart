@@ -24,45 +24,53 @@ class MailgunMailer implements Mailer {
       Map<String, dynamic> options}) async {
     var client = http.Client();
     try {
-      var request = http.Request(
+      var request = http.MultipartRequest(
           'POST',
           Uri(
               userInfo: 'api:$apiKey',
               scheme: 'https',
               host: 'api.mailgun.net',
               path: '/v3/$domain/messages'));
-      var body = Map<String, String>();
       if (subject != null) {
-        body['subject'] = subject;
+        request.fields['subject'] = subject;
       }
       if (html != null) {
-        body['html'] = html;
+        request.fields['html'] = html;
       }
       if (text != null) {
-        body['text'] = text;
+        request.fields['text'] = text;
       }
       if (from != null) {
-        body['from'] = from;
+        request.fields['from'] = from;
       }
       if (to.length > 0) {
-        body['to'] = to.join(", ");
+        request.fields['to'] = to.join(", ");
       }
       if (cc.length > 0) {
-        body['cc'] = cc.join(", ");
+        request.fields['cc'] = cc.join(", ");
       }
       if (bcc.length > 0) {
-        body['bcc'] = bcc.join(", ");
+        request.fields['bcc'] = bcc.join(", ");
       }
       if (template != null) {
-        body['template'] = template;
+        request.fields['template'] = template;
       }
       if (options != null) {
         if (options.containsKey('template_variables')) {
-          body['h:X-Mailgun-Variables'] =
+          request.fields['h:X-Mailgun-Variables'] =
               jsonEncode(options['template_variables']);
         }
       }
-      request.bodyFields = body;
+      if (attachments.length > 0) {
+        request.headers["Content-Type"] = "multipart/form-data";
+        for (var i = 0; i < attachments.length; i++) {
+          var attachment = attachments[i];
+          if (attachment is File) {
+            request.files.add(await http.MultipartFile.fromPath(
+                'attachment', attachment.path));
+          }
+        }
+      }
       var response = await client.send(request);
       var responseBody = await response.stream.bytesToString();
       var jsonBody = jsonDecode(responseBody);
