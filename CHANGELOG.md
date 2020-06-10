@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Support attachments
+
 ## 0.1.0
 
 * Upgrade `mail: 0.1.0`
