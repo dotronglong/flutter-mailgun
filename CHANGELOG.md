@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Add example in README
+
 ## 0.1.1
 
 * Support attachments

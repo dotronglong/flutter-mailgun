@@ -1,7 +1,6 @@
 name: mailgun
 description: A Flutter package for sending email using Mailgun API
-version: 0.1.1
-author: Long Do <me@dotronglong.com>
+version: 0.1.2
 homepage: https://github.com/dotronglong/flutter-mailgun
 
 environment:
